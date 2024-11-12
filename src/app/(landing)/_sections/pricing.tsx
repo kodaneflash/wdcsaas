@@ -76,7 +76,7 @@ export function PricingSection({
         <h2 className="mb-5 text-center text-5xl font-bold text-gray-900 dark:text-white">
           Simple pricing for everyone
         </h2>
-        <p className="mb-14 max-w-3xl text-center w-full">
+        <p className="mb-14 max-w-3xl text-clean-subtext text-center w-full">
           Choose the plan that suits you best. Enjoy full access to premium
           content and expert support. <br className="hidden md:block" /> Start
           your journey today and achieve your goals!

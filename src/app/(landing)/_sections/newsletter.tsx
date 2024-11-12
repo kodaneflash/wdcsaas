@@ -1,4 +1,4 @@
-export function NewsletterSection() {
+whaexport function NewsletterSection() {
   return (
     <div>
       <form

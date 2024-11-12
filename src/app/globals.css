@@ -201,3 +201,9 @@
     @apply bg-slate-200;
   }
 }
+
+@layer components {
+  .text-clean-subtext {
+    @apply text-[18px] font-light py-4 text-center max-w-lg text-foreground;
+  }
+}
