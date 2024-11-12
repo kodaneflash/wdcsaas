@@ -1,4 +1,4 @@
-src/app/browse/page.tsximport { env } from "@/env";
+import { env } from "@/env";
 import { defineConfig } from "drizzle-kit";
 
 export default defineConfig({
