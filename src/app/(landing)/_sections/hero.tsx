@@ -61,7 +61,7 @@ export function HeroSection() {
             priority
           />
         </div>
-        <div className="absolute inset-0 -z-10 bg-primary/5 [filter:blur(80px)]" />
+        <div className="absolute inset-0 -z-10 bg-primary/8 [filter:blur(100px)]" />
       </div>
     </section>
   );
