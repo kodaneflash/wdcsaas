@@ -1,37 +1,26 @@
 import { SVGProps } from "react";
 
 export interface Iphone15ProProps extends SVGProps<SVGSVGElement> {
-  width?: number | string;
-  height?: number | string;
-  children?: React.ReactNode;
-  className?: string;
+  src?: string;
+  borderColor?: string;
 }
 
-export default function Iphone15Pro({
-  width = "100%",
-  height = "auto",
-  children,
-  className = "",
+export const Iphone15Pro = ({
+  src,
+  borderColor = "currentColor",
   ...props
-}: Iphone15ProProps) {
-  // Base dimensions for aspect ratio
-  const baseWidth = 433;
-  const baseHeight = 882;
-
+}: Iphone15ProProps) => {
   return (
     <svg
-      width={width}
-      height={height}
-      viewBox={`0 0 ${baseWidth} ${baseHeight}`}
+      viewBox="0 0 433 882"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       preserveAspectRatio="xMidYMid meet"
-      className={`w-full max-w-[433px] h-auto ${className}`}
       {...props}
     >
       <path
         d="M2 73C2 32.6832 34.6832 0 75 0H357C397.317 0 430 32.6832 430 73V809C430 849.317 397.317 882 357 882H75C34.6832 882 2 849.317 2 809V73Z"
-        className="fill-[#E5E5E5] dark:fill-[#404040]"
+        fill={borderColor}
       />
       <path
         d="M0 171C0 170.448 0.447715 170 1 170H3V204H1C0.447715 204 0 203.552 0 203V171Z"
@@ -63,18 +52,17 @@ export default function Iphone15Pro({
         className="fill-[#E5E5E5] dark:fill-[#404040] stroke-[#E5E5E5] dark:stroke-[#404040] stroke-[0.5]"
       />
 
-      <foreignObject 
-        x="21.25"
-        y="19.25"
-        width="389.5"
-        height="843.5"
-        clipPath="url(#roundedCorners)"
-      >
-        <div className="h-full w-full bg-background overflow-hidden">
-          {children}
-        </div>
-      </foreignObject>
-
+      {src && (
+        <image
+          href={src}
+          x="21.25"
+          y="19.25"
+          width="389.5"
+          height="843.5"
+          preserveAspectRatio="xMidYMid slice"
+          clipPath="url(#roundedCorners)"
+        />
+      )}
       <path
         d="M154 48.5C154 38.2827 162.283 30 172.5 30H259.5C269.717 30 278 38.2827 278 48.5C278 58.7173 269.717 67 259.5 67H172.5C162.283 67 154 58.7173 154 48.5Z"
         className="dark:fill-[#262626] fill-[#F5F5F5]"
@@ -101,4 +89,4 @@ export default function Iphone15Pro({
       </defs>
     </svg>
   );
-}
+};

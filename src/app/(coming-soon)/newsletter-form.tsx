@@ -6,13 +6,13 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/components/ui/use-toast";
-import { Terminal } from "lucide-react";
+import { Terminal, ArrowRight } from "lucide-react";
 import { useRef } from "react";
 import { useServerAction } from "zsa-react";
+import { SocialProof } from "@/components/ui/social-proof";
 
 export function NewsletterForm() {
   const { toast } = useToast();
-
   const ref = useRef<HTMLFormElement>(null);
   const { execute, status, isError, error } = useServerAction(
     subscribeEmailAction,
@@ -34,7 +34,7 @@ export function NewsletterForm() {
     <>
       <form
         ref={ref}
-        className="flex gap-2"
+        className="flex items-center gap-2 w-full max-w-[440px] mx-auto"
         onSubmit={async (event) => {
           event.preventDefault();
           const form = event.target as HTMLFormElement;
@@ -43,37 +43,53 @@ export function NewsletterForm() {
           await execute({ email });
         }}
       >
-        <Label className="sr-only" htmlFor="email" />
+        <Label className="sr-only" htmlFor="email">
+          Email address
+        </Label>
         <Input
           required
           type="email"
           name="email"
-          className="text max-w-[320px] dark:bg-slate-100 dark:text-slate-900 dark:placeholder-slate-600"
+          className="h-12 flex-1 min-w-0 rounded-xl bg-white border-2 border-gray-200 text-gray-600 placeholder:text-gray-400 text-center"
           id="email"
-          placeholder="Enter your email address"
+          placeholder="Enter your email..."
         />
 
-        <LoaderButton isLoading={status === "pending"}>Subscribe</LoaderButton>
+        <LoaderButton 
+          isLoading={status === "pending"}
+          className="h-12 shrink-0 px-8 rounded-xl whitespace-nowrap font-medium btn-gradient text-white"
+        >
+          <span className="flex items-center justify-center">
+            {status === "pending" ? "Subscribing..." : "Subscribe"}
+            <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
+          </span>
+        </LoaderButton>
       </form>
 
-      <div className="mt-4">
-        {status === "success" && (
-          <Alert variant="success">
-            <Terminal className="h-4 w-4" />
-            <AlertTitle>Successfully subscribed</AlertTitle>
-            <AlertDescription>
-              We&apos;ll let you know when this starter kit is ready!
-            </AlertDescription>
-          </Alert>
-        )}
+      {(status === "success" || isError) && (
+        <div className="mt-4 w-52 mx-auto">
+          {status === "success" && (
+            <Alert variant="success" className="rounded-lg">
+              <Terminal className="h-4 w-4" />
+              <AlertTitle>Successfully subscribed</AlertTitle>
+              <AlertDescription>
+                You&apos;ll receive our weekly case studies and founder insights!
+              </AlertDescription>
+            </Alert>
+          )}
 
-        {isError && (
-          <Alert variant="destructive">
-            <Terminal className="h-4 w-4" />
-            <AlertTitle>Something went wrong</AlertTitle>
-            <AlertDescription>{error.message}</AlertDescription>
-          </Alert>
-        )}
+          {isError && (
+            <Alert variant="destructive" className="rounded-lg">
+              <Terminal className="h-4 w-4" />
+              <AlertTitle>Something went wrong</AlertTitle>
+              <AlertDescription>{error.message}</AlertDescription>
+            </Alert>
+          )}
+        </div>
+      )}
+
+      <div className="mt-8 flex justify-center lg:justify-end lg:pr-12">
+        <SocialProof />
       </div>
     </>
   );
