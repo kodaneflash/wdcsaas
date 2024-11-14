@@ -12,8 +12,7 @@ import PostHogPageView from "@/components/posthog-page-view";
 import { ComingSoonFooter } from "@/app/(coming-soon)/footer";
 import { Header } from "@/app/_header/header";
 
-import { Archivo } from "next/font/google";
-import { Libre_Franklin } from "next/font/google";
+import { Archivo, Inter } from "next/font/google";
 import { BreakpointOverlay } from "@/components/breakpoint-overlay";
 
 const archivo = Archivo({
@@ -21,10 +20,11 @@ const archivo = Archivo({
   display: "swap",
   variable: "--font-archivo",
 });
-const libre_franklin = Libre_Franklin({
+s
+const inter = Inter({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-libre_franklin",
+  variable: "--font-sans",
 });
 
 const { mode } = appConfig;
@@ -70,7 +70,7 @@ export default async function RootLayout({
       <body
         className={cn(
           "min-h-screen bg-background antialiased",
-          archivo.variable + " " + libre_franklin.variable
+          archivo.variable + " " + inter.variable
         )}
       >
         <Providers>
@@ -79,7 +79,7 @@ export default async function RootLayout({
           </Suspense>
           <NextTopLoader />
           <div className="flex flex-col w-full">
-            {appConfig.mode === "live" && <Header />}
+            <Header />
             <div>{children}</div>
             {appConfig.mode === "comingSoon" ? (
               <ComingSoonFooter />

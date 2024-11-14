@@ -79,7 +79,7 @@
 
   body {
     @apply bg-background text-foreground;
-    font-family: var(--font-libre_franklin), sans-serif;
+    font-family: var(--font-sans), sans-serif;
   }
 
   a {
@@ -92,7 +92,7 @@
   h4,
   h5,
   h6 {
-    font-family: var(--font-archivo), sans-serif;
+    font-family: var(--font-sans), sans-serif;
     @apply text-foreground;
   }
 }
