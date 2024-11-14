@@ -20,7 +20,7 @@ const archivo = Archivo({
   display: "swap",
   variable: "--font-archivo",
 });
-s
+
 const inter = Inter({
   subsets: ["latin"],
   display: "swap",
